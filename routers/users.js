@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const bcrypt = require("bcrypt");
-const { hashSync } = require("bcrypt");
+// const { hashSync } = require("bcrypt");
 const Users = require("../models").user;
 const router = new Router();
 
@@ -29,6 +29,7 @@ router.post("/signup", async (req, res) => {
     console.log(e.message);
   }
 });
+
 
 router.get("/", async (req, res, next) => {
   try {

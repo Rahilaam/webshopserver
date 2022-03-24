@@ -5,6 +5,8 @@ const Categories = require("../models").category;
 const router = new Router();
 
 router.get("/", async (request, response, next) => {
+  // const limit = req.query.limit || 5;
+  // const offset = req.query.offset || 0;
   try {
     const allProducts = await Products.findAll({ include: [Categories] });
     response.send(allProducts);
