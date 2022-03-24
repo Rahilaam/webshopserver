@@ -1,5 +1,6 @@
 const express = require("express");
 const productRouter = require("./routers/products");
+const userRouter = require("./routers/users");
 const cors = require("cors");
 
 const app = express();
@@ -9,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/products", productRouter);
+app.use("/users", userRouter);
 
 app.get("/", (request, response, next) => {
   response.send("hello I'm the server");
