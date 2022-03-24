@@ -4,7 +4,8 @@ const { hashSync } = require("bcrypt");
 const Users = require("../models").user;
 const router = new Router();
 
-router.post("/", async (req, res) => {
+router.post("/signup", async (req, res) => {
+  console.log(`server got the request`);
   try {
     const { name, email, password } = req.body;
 
@@ -14,14 +15,14 @@ router.post("/", async (req, res) => {
     } else if (checkEmail) {
       res.status(404).send("email is already exist");
     } else if (password.length < 6) {
-      res.send("password should be 6 characters long!");
+      res.status(404).send("password should be 6 characters long!");
     } else {
       const createUser = await Users.create({
         name,
         email,
         password: bcrypt.hashSync(password, 10),
       });
-      res.send(createUser);
+      res.status(200).send(createUser);
       console.log(createUser);
     }
   } catch (e) {
